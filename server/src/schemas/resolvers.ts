@@ -55,7 +55,7 @@ const resolvers = {
   Mutation: {
     addUser: async (_parent: any, { input }: AddUserArgs): Promise<{ token: string; profile: User }> => {
       const user = await User.create({ ...input });
-      const token = signToken(user.email, user.username);
+      const token = signToken(user.email, user.username , user._id);
       return { token, profile: user as User };
     },
     login: async (_parent: any, { input: { email, password } }: LoginArgs) => {
@@ -75,7 +75,7 @@ const resolvers = {
       }
     
       // Sign a token with the user's information
-      const token = signToken(user.username, user.email);
+      const token = signToken(user.username, user.email , user._id);
     
       // Return the token and the user
       return { token, user };
@@ -102,10 +102,10 @@ const resolvers = {
       throw AuthenticationError;
     },
     removeBook: async (_parent: any, { bookId }: RemoveBookArgs, context: Context): Promise<User | null> => {
-      if (context.bookId) {
+      if (bookId && context.user) {
         return await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: {  } },
+          { $pull: { savedBooks: { bookId } } },
           { new: true }
         );
       }
