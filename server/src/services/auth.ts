@@ -5,7 +5,6 @@ dotenv.config();
 
 export const authenticateToken = ({ req }: any) => {
   let token = req.body.token || req.query.token || req.headers.authorization;
-
   if (req.headers.authorization) {
     token = token.split(' ').pop().trim();
   }
@@ -15,7 +14,8 @@ export const authenticateToken = ({ req }: any) => {
   }
 
   try {
-    const { userData }: any = jwt.verify(token, process.env.JWT_SECRET_KEY || '', { maxAge: '1hr' });
+    
+    const userData: any = jwt.verify(token, process.env.JWT_SECRET_KEY || '', { maxAge: '1hr' });
     req.user = userData; // could do userData.data to destructure that object out from here
     
     
