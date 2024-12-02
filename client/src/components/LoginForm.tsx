@@ -38,7 +38,7 @@ const LoginForm: React.FC<FormProps> = ({ handleModalClose }) => {
     try {
 
       const { data } = await login({
-        variables: { input: { ...userFormData } }
+        variables: { ...userFormData }
       });
 
       if (error) {
@@ -55,10 +55,9 @@ const LoginForm: React.FC<FormProps> = ({ handleModalClose }) => {
     }
 
     setUserFormData({
-      username: '',
       email: '',
       password: '',
-      savedBooks: [],
+    
     });
   };
 

@@ -11,7 +11,7 @@ import { FormProps } from './LoginForm.js';
 
 const SignupForm: React.FC<FormProps> = ({ handleModalClose }) => {
   // initial form state
-  const [userFormData, setUserFormData] = useState<User>({ username: '', email: '', password: '', savedBooks: [] });
+  const [userFormData, setUserFormData] = useState<User>({ username: '', email: '', password: '' });
   // form validation
   const [validated] = useState(false);
   // alert
@@ -27,7 +27,7 @@ const SignupForm: React.FC<FormProps> = ({ handleModalClose }) => {
   const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // check if form has everything (as per react-bootstrap docs)
+   
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
@@ -57,8 +57,7 @@ const SignupForm: React.FC<FormProps> = ({ handleModalClose }) => {
     setUserFormData({
       username: '',
       email: '',
-      password: '',
-      savedBooks: [],
+      password: ''
     });
   };
 
