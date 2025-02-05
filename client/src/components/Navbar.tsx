@@ -17,6 +17,7 @@ const AppNavbar = () => {
           <Navbar.Brand as={Link} to='/'>
             Google Books Search
           </Navbar.Brand>
+          <h3>&copy; {new Date().getFullYear()} Richard Stuckey</h3>
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar' className='d-flex flex-row-reverse'>
             <Nav className='ml-auto d-flex'>
